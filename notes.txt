@@ -1,0 +1,51 @@
+Mongo DB
+
+=> Introduction
+- It's a NOSql db.
+- stores data in JSON-like documents
+- maps to the object in your application code, making data easy to work with
+- it's a distributed db at its core, so high availability, horizontal scaling and geographic info is easy
+
+
+=> how does mongodb works
+- there are no schemas but collections means collection of documents
+- wiredtiger storage engine is the default for mongodb
+
+=> Object Id & BSON 
+- while saving JSON data mongo it gets converted to BSON which is more efficient.
+- BSON is superset of JSON
+- we can also provide _id value from our end also but it should be unique in this case mongo will not store your _id as a BSON objectId but just as you provide it
+
+-----------------------------------------
+Related data
+- recommended to store related data in same relation
+----------------------------------------
+
+
+Indexing
+- It fasts to overall searching execution time
+- add index to the field which is unique
+- only add when you have to read data more or many times
+- due to index adding read becomes fast but write becomes slow
+
+---------------------------------------------------
+
+Enable access control - for giving access to a user
+
+- use admin
+- db.createUser(
+    user: 'user name',
+    pwd: passwordPrompt(),
+    roles: [
+        {
+            role: 'userAdminAnyDatabase', db: "admin"
+        },
+        "readWitreAnyDatabase"
+    ]
+  )
+- after this restart mongodb server
+
+Above query will give the user admin permissions and read and write access to all dbs
+
+
+Refer docs for more info

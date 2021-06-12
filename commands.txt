@@ -1,0 +1,84 @@
+=> ctrl + L (removes unnecesary text in mongo shell)
+=> show dbs (shows current dbs)
+
+=> use db_name (can be used to switch to a current db or to create a new one)
+
+=> db.createCollection('collection_name') 
+- this can be used to create an empty collection
+
+=> db.collection_name.drop()
+- this will delete the collection
+
+=> db.dropDatabase()
+- this will delete the complete database but make sure you have the aceess of correct db object
+
+=> db.collection_name.insertOne({ data: "" })
+- used to insert data into a pre-existing collection or if the collection doesn't exist it will create a new collection and insert data in it
+
+=> db.collection_name.find()
+- to display all the documents present in the collection
+- you can send filter object in the find method to find the filtered data
+
+=> db.collection_name.find().pretty()
+- to display all the data in a nice and readable format
+
+=> db.collection_name.findOne({ filter })
+- this will only return a single document, if multiple documents are present with same filter it'll return a first one in natural order
+
+=> db.collection_name.insertMany([ array of docs ])
+
+=> db.collection_name.update({filter}, {$set: {prp_name: "new value"}})
+- don't use it. It's a depcreated feature now
+
+=> db.products.deleteOne({ filter })
+- deletes the particular data
+
+=> db.products.deleteMany({ _id: { $in: ['value1', 'value2'] } })
+- deletes multiple documents when _id value exists in the array as per above example
+
+--------------------------------------------------------
+
+Related data
+- add id as foreiugn key in collections
+
+-------------------------------------------------
+
+operators
+
+=> db.products.find({name: {$eq: "GPU"}})
+- checks if name prop is GPU
+
+=> db.products.find({price: {$gt: 5500}})
+- checks if price is greater than 5500
+
+=> db.products.find({price: {$lt: 5500}})
+- checks if price is less than 5500
+
+=> $lte and $gte
+
+=> db.products.find({price: {$ne: 5500}})
+- checks if price is not equal to 5500
+
+-----------------------------------------------
+
+logical
+
+=> db.products.find({ $and: [
+    { price: {$eq: 5000} }, 
+    {name: {$eq: "GPU"}}
+]})
+- see if both of the and conditions are true or not
+
+---------------------------------------------
+
+
+Indexing
+
+=> db.products.createIndex({ name: 1})
+- this will create a new index for name property
+
+=> db.products.getIndexes()
+- returns all indexes present on products collection
+
+=> db.products.dropIndex('name_1')
+- removes index presesnt on name property
